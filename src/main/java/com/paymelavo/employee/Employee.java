@@ -1,6 +1,7 @@
 package com.paymelavo.employee;
 
-import com.paymelavo.payrunline.PayRunLine;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -36,8 +37,9 @@ public class Employee {
     @Column(name = "last_Name", nullable = false)
     private String lastName;
 
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     @Email
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "phone_number", unique = true)
