@@ -11,3 +11,11 @@ spring:
     hikari:
         pool-name: paymelavo-pool
         maximum-pool-size: 10
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: update           # schema is owned by Flyway; Hibernate only validates
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
