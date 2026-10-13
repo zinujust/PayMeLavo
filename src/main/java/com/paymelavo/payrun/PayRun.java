@@ -1,5 +1,6 @@
 package com.paymelavo.payrun;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.paymelavo.payrunline.PayRunLine;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -25,6 +26,7 @@ public class PayRun {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "payRun", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PayRunLine> lines = new ArrayList<>();
 

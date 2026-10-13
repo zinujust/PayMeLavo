@@ -27,6 +27,24 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.CONFLICT, e.getMessage(), request);
     }
 
+    @ExceptionHandler(IllegalDateException.class)
+    public ResponseEntity<ApiError> handleDateException(
+            IllegalDateException ex,
+            HttpServletRequest request) {
+
+        return build(HttpStatus.BAD_REQUEST, ex.getMessage(), request);
+    }
+
+    @ExceptionHandler(PayRunNotEditableException.class)
+    public ResponseEntity<ApiError> handlePayRunNotEditableException(PayRunNotEditableException ex, HttpServletRequest request) {
+        return build(HttpStatus.CONFLICT, ex.getMessage(), request);
+    }
+
+    @ExceptionHandler(DataNotMatchingException.class)
+    public ResponseEntity<ApiError> handleDataNotMatchingException(DataNotMatchingException ex, HttpServletRequest request) {
+        return build(HttpStatus.BAD_REQUEST, ex.getMessage(), request);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGeneralException(
             Exception ex,
@@ -44,7 +62,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(apiError, status);
     }
 
-    public ResponseEntity<ApiError>build(HttpStatus status, String message, HttpServletRequest request) {
+    public ResponseEntity<ApiError> build(HttpStatus status, String message, HttpServletRequest request) {
         ApiError error = new ApiError(
                 LocalDateTime.now(ZoneId.of("Pacific/Fiji")),
                                   status.value(),

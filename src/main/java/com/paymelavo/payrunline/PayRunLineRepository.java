@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PayRunLineRepository extends JpaRepository<PayRunLine, Long> {
+    PayRunLine findByPayRunIdAndId(Long payRunId, Long lineId);
 }
