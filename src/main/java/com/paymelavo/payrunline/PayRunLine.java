@@ -3,6 +3,8 @@ package com.paymelavo.payrunline;
 import com.paymelavo.employee.Employee;
 import com.paymelavo.payrun.PayRun;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -31,12 +33,21 @@ public class PayRunLine {
     private Employee employee;
 
     @NotNull
+    @Max(168)
     @Column(name = "normal_hours", nullable = false)
     private BigDecimal normalHours;
 
     @NotNull
+    @Max(168)
+    @Min(0)
     @Column(name = "overtime_hours", nullable = false)
     private BigDecimal overtimeHours;
+
+    @NotNull
+    @Max(168)
+    @Min(0)
+    @Column(name = "total_hours", nullable = false)
+    private BigDecimal totalHours;
 
     @NotNull
     @Column(name = "pay_rate", nullable = false, precision = 12, scale = 2)
